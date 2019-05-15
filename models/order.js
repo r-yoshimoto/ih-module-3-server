@@ -18,7 +18,7 @@ const orderSchema = new Schema({
   courier: {type: Schema.Types.ObjectId, ref: 'User'},
   category:{
     type: String,
-    enum: ["Waiting courier confirmation", "Confirmed", "Out for delivery", "Delivered"],
+    enum: ["Waiting courier confirmation", "Confirmed", "Out for delivery", "Delivered", "Cancelled"],
     default: ""
 }
 });
