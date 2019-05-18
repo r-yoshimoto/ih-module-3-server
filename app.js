@@ -77,7 +77,6 @@ app.use(cors({
   origin: ['http://localhost:3000'] // <== this will be the URL of our React app (it will be running on port 3000)
 }));
 
-
 app.use('/', index);
 app.use('/api', authRoutes);
 
@@ -85,5 +84,10 @@ app.use((req, res, next) => {
   // If no routes match, send them the React HTML.
   res.sendFile(__dirname + "/public/index.html");
 });
+
+app.use('/api', require('./routes/offer-routes'));
+app.use('/api', require('./routes/order-routes'));
+
+
 
 module.exports = app;
