@@ -11,7 +11,7 @@ const orderSchema = new Schema({
   category:{
     type: String,
     enum: ["Fruits", "Flowers", "Fish", "Vegetables", "None of above"],
-    default: "None of Above"
+    default: "Fruits"
 }, 
   owner: {type: Schema.Types.ObjectId, ref: 'User'},
   buyer: {type: Schema.Types.ObjectId, ref: 'User'},
