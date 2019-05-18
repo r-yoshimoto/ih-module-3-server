@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const router  = express.Router();
 
 const Offer = require('../models/offer');
-const User = require('../models/user-model'); // <== !!!
+const User = require('../models/users'); // <== !!!
 
 
 // POST route => to create a new project
