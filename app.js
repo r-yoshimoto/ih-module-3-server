@@ -60,4 +60,9 @@ app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.use('/api', require('./routes/offer-routes'));
+app.use('/api', require('./routes/order-routes'));
+
+
+
 module.exports = app;
