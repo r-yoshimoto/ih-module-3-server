@@ -10,6 +10,7 @@ const offerSchema = new Schema({
   category:{
     type: String,
     enum: ["Fruits", "Flowers", "Fish", "Vegetables", "None of above"],
+    default: "Fruits"
 
 }, 
   owner: {type: Schema.Types.ObjectId, ref: 'User'}

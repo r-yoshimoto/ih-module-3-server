@@ -80,13 +80,14 @@ app.use(cors({
 app.use('/', index);
 app.use('/api', authRoutes);
 
+app.use('/api', require('./routes/offer-routes'));
+app.use('/api', require('./routes/order-routes'));
+
 app.use((req, res, next) => {
   // If no routes match, send them the React HTML.
   res.sendFile(__dirname + "/public/index.html");
 });
 
-app.use('/api', require('./routes/offer-routes'));
-app.use('/api', require('./routes/order-routes'));
 
 
 
