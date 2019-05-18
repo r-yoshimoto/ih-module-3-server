@@ -9,8 +9,8 @@ const offerSchema = new Schema({
   minimum: Number, 
   category:{
     type: String,
-    enum: ["Fruits", "Flowers", "Fish", "Vegetables"],
-    default: "Signed"
+    enum: ["Fruits", "Flowers", "Fish", "Vegetables", "None of above"],
+
 }, 
   owner: {type: Schema.Types.ObjectId, ref: 'User'}
 });
