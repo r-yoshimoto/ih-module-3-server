@@ -6,8 +6,6 @@ const app = express();
 const User = require("../models/users");
 
 
-
-
 passport.serializeUser((user, cb) => {
   cb(null, user._id);
 });
@@ -39,7 +37,10 @@ passport.use(
           return next(null, false, { message: "Incorrect password" });
         }
         if (user.status == "Pending") {
-          return next(null, false, { message: `Please validade your email. <a href="/confirm/resend/${user.emailConfirmationCode}">Click here to resend.</a>` });
+          return next(null, false, {
+            token: user.emailConfirmationCode,
+            message: `Please validade your email.`,
+          });
         }
 
         return next(null, user);
