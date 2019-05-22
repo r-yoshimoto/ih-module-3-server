@@ -8,6 +8,7 @@ const orderSchema = new Schema({
   unity: String,
   minimum: Number, 
   total: Number,
+  totalPrice: Number,
   category:{
     type: String,
     enum: ["Fruits", "Flowers", "Fish", "Vegetables", "None of above"],
