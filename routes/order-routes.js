@@ -22,8 +22,8 @@ router.post('/orders', (req, res, next)=>{
     totalPrice: req.body.totalPrice,  
     owner: req.body.owner,
     buyer: req.user._id,
-    courier: "",
-    category: "Waiting courier confirmation"
+    // courier: "",
+    status: "Waiting courier confirmation"
   })
     .then(response => {
       res.json(response);

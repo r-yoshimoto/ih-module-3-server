@@ -16,8 +16,8 @@ const orderSchema = new Schema({
 }, 
   owner: {type: Schema.Types.ObjectId, ref: 'User'},
   buyer: {type: Schema.Types.ObjectId, ref: 'User'},
-  courier: {type: Schema.Types.ObjectId, ref: 'User'},
-  category:{
+  // courier: {type: Schema.Types.ObjectId, ref: 'User'},
+  status:{
     type: String,
     enum: ["Waiting courier confirmation", "Confirmed", "Out for delivery", "Delivered", "Cancelled"],
     default: ""
