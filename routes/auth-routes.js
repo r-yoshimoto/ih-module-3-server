@@ -6,6 +6,7 @@ const authRoutes = express.Router();
 const passport = require('passport');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
+const ensureLogin = require("connect-ensure-login");
 
 const transporter = require("../configs/nodemailer");
 
@@ -205,9 +206,41 @@ authRoutes.post('/login', (req, res, next) => {
       // We are now logged in (that's why we can also send req.user)
         res.status(200).json({
           message: "You're logged in!",
-          userDetail: theUser});
+          userDetail: theUser,
+        });
     });
   })(req, res, next);
+});
+
+authRoutes.post("/edit-profile", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+
+  const { fullName } = req.body;
+  
+  if (fullName == undefined) {
+    if(fullName.length == 1){
+      res.status(401).json({message: "Your name should have at least two characters"})
+      return;  
+    }
+    res.status(401).json({message: "Please fill all fields."})
+    return;
+  }
+
+  const updateUser = { fullName: correctName(fullName) };
+
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $set: updateUser },
+    { new: true }
+  )
+    .then(user => {
+       res.status(200).json({
+          message: "Your profile has been updated.",
+          userDetail: user});
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Something went wrong while trying to save your profile.' });
+      return;
+    });
 });
 
 authRoutes.post('/logout', (req, res, next) => {
